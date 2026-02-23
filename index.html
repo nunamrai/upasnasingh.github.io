@@ -5,120 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upasna Singh-Creative</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <script
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
   </head>
-  <body class="bg-gray-50">
-    <nav
-      class="bg-white shadow-md w-full z-50"
-      x-data="{ mobileMenuOpen: false }"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex-shrink-0 flex items-center">
-            <span class="text-2xl font-bold text-indigo-600 tracking-tight"
-              >Upasna Singh</span
+  <body class="">
+    <div class="">
+      <div class="flex items-center justify-center py-20">
+        <img
+          src="./public/img/portfolio.png"
+          alt="Portfolio Image"
+          class="h-60"
+        />
+      </div>
+      <section class="bg-white py-16 px-6 font-sans">
+        <div class="max-w-6xl mx-auto">
+          <div class="mb-12 relative">
+            <h2
+              class="text-5xl font-black text-black tracking-tighter italic md:not-italic"
             >
+              Introduction
+            </h2>
+            <span
+              class="text-xl font-serif italic text-yellow-500 absolute -bottom-4 left-32 opacity-80"
+            >
+              about me
+            </span>
           </div>
 
-          <div class="hidden md:flex space-x-8 items-center">
-            <a
-              href="#"
-              class="text-gray-700 hover:text-indigo-600 font-medium transition"
-              >Home</a
-            >
-            <a
-              href="#"
-              class="text-gray-700 hover:text-indigo-600 font-medium transition"
-              >Projects</a
-            >
-            <a
-              href="#"
-              class="text-gray-700 hover:text-indigo-600 font-medium transition"
-              >About</a
-            >
-            <a
-              href="#"
-              class="bg-indigo-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-indigo-700 transition"
-              >Contact Me</a
-            >
-          </div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-4 flex flex-col">
+              <div class="relative group">
+                <div
+                  class="absolute inset-0 bg-yellow-400 translate-x-3 -translate-y-3 -z-10 transition group-hover:translate-x-0 group-hover:translate-y-0"
+                ></div>
+                <img
+                  src="./public/img/profile.jpg"
+                  alt="Alvina Dwi Amelia"
+                  class="w-full h-[400px] object-cover hover:grayscale-0 transition duration-500"
+                />
+              </div>
 
-          <div class="md:hidden flex items-center">
-            <button
-              @click="mobileMenuOpen = !mobileMenuOpen"
-              class="text-gray-700 outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                x-show="!mobileMenuOpen"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                x-show="mobileMenuOpen"
-                x-cloak
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-            </button>
+              <div class="mt-8">
+                <h3 class="text-3xl font-bold text-black italic">_hey,</h3>
+                <p class="mt-4 text-gray-600 leading-relaxed text-sm">
+                  I'm a Visual Communication Design (DKV) student who has a
+                  passion for the digital field. Experienced in the freelance
+                  field via Fiverr for 3 years. Accustomed to working on
+                  projects creating social media layouts, motion graphics,
+                  illustrations, UI/UX design, and web design.
+                </p>
+              </div>
+            </div>
+
+            <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <h4
+                  class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Profile & Contact
+                </h4>
+                <hr class="border-black border-t-2 mb-4 w-12" />
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                  UPASNA SINGH
+                </h3>
+                <ul class="space-y-2 text-xs text-gray-500 font-medium">
+                  <li class="flex items-center gap-2">📍 Malang, Indonesia</li>
+                  <li class="flex items-center gap-2">
+                    📞 Phone: +6287-xxxx-xxxx
+                  </li>
+                  <li class="flex items-center gap-2">
+                    ✉️ email: anivlave@gmail.com
+                  </li>
+                </ul>
+
+                <h4
+                  class="text-xs font-bold uppercase tracking-widest text-gray-400 mt-10 mb-2"
+                >
+                  Education
+                </h4>
+                <hr class="border-black border-t-2 mb-4 w-12" />
+                <div
+                  class="text-[10px] uppercase font-bold text-gray-700 space-y-1"
+                >
+                  <p>SMA N 1 KEPANJEN</p>
+                  <p>S1 DESAIN KOMUNIKASI VISUAL UM</p>
+                </div>
+              </div>
+
+              <div>
+                <h4
+                  class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2"
+                >
+                  Work & Organization Experience
+                </h4>
+                <hr class="border-black border-t-2 mb-4 w-12" />
+                <div class="space-y-6">
+                  <div>
+                    <p class="text-[10px] font-black uppercase">
+                      Freelance Desain Logo & Content Creator
+                    </p>
+                    <p class="text-[10px] text-gray-400 italic">
+                      fiverr.com (Jul 2020 - present)
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-black uppercase">
+                      Koordinator Seksi Kewirausahaan
+                    </p>
+                    <p class="text-[10px] text-gray-400 italic">
+                      Himpunan Mahasiswa Jurusan (Feb 2022 - Des 2023)
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-black uppercase">
+                      Koordinator Seksi Publikasi
+                    </p>
+                    <p class="text-[10px] text-gray-400 italic">
+                      Posko Visual Online Exhibition (17-19 Sept 2021)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2 pt-8">
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="h-px bg-black flex-grow"></div>
+                  <h4
+                    class="text-[10px] font-bold uppercase tracking-tighter text-gray-500"
+                  >
+                    Software Skills
+                  </h4>
+                  <div class="h-px bg-black flex-grow"></div>
+                </div>
+                <div class="flex justify-center gap-4">
+                  <div
+                    class="w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center text-white font-bold shadow-sm"
+                  >
+                    Ps
+                  </div>
+                  <div
+                    class="w-10 h-10 bg-yellow-500 rounded-lg flex items-center justify-center text-white font-bold shadow-sm"
+                  >
+                    Ai
+                  </div>
+                  <div
+                    class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center text-white font-bold shadow-sm"
+                  >
+                    Pr
+                  </div>
+                  <div
+                    class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center text-white font-bold shadow-sm"
+                  >
+                    Ae
+                  </div>
+                  <div
+                    class="w-10 h-10 bg-pink-400 rounded-lg flex items-center justify-center text-white font-bold shadow-sm"
+                  >
+                    F
+                  </div>
+                </div>
+
+                <div class="mt-8 flex flex-col items-center">
+                  <h4
+                    class="text-[10px] font-bold uppercase text-gray-400 mb-4"
+                  >
+                    Interest
+                  </h4>
+                  <div class="flex flex-wrap justify-center gap-2">
+                    <span
+                      class="px-4 py-1 border border-yellow-500 rounded-full text-[10px] text-yellow-600 font-bold uppercase"
+                      >Drawing</span
+                    >
+                    <span
+                      class="px-4 py-1 border border-yellow-500 rounded-full text-[10px] text-yellow-600 font-bold uppercase"
+                      >Reading</span
+                    >
+                    <span
+                      class="px-4 py-1 border border-yellow-500 rounded-full text-[10px] text-yellow-600 font-bold uppercase"
+                      >Music</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div
-        x-show="mobileMenuOpen"
-        x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="opacity-0 -translate-y-4"
-        x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-4"
-        class="md:hidden bg-white border-t border-gray-100"
-        x-cloak
-      >
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a
-            href="#"
-            class="block px-3 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md"
-            >Home</a
-          >
-          <a
-            href="#"
-            class="block px-3 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md"
-            >Projects</a
-          >
-          <a
-            href="#"
-            class="block px-3 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md"
-            >About</a
-          >
-          <a
-            href="#"
-            class="block px-3 py-2 bg-indigo-600 text-white rounded-md mt-4 text-center"
-            >Contact Me</a
-          >
-        </div>
-      </div>
-    </nav>
+      </section>
+    </div>
   </body>
 </html>
