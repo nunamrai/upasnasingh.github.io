@@ -4,23 +4,142 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello 💗</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
     <style>
       body {
-        background: linear-gradient(135deg, #ffe4ec, #fff0f5);
+        background: linear-gradient(135deg, #ffe4ec, #fff0f5, #fce4ff);
+        overflow-x: hidden;
+      }
+      .floating-sticker {
+        position: fixed;
+        pointer-events: none;
+        font-size: 26px;
+        animation: floatS 6s ease-in-out infinite;
+      }
+      @keyframes floatS {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-5deg);
+        }
+        50% {
+          transform: translateY(-16px) rotate(5deg);
+        }
+      }
+      .illus-card {
+        transition: transform 0.25s;
+        cursor: default;
+      }
+      .illus-card:hover {
+        transform: scale(1.1) rotate(-2deg);
+      }
+
+      /* MARQUEE */
+      .ticker-outer {
+        border-radius: 999px;
+        background: linear-gradient(90deg, #fce7f3, #fdf2f8);
+        border: 1.5px solid #fbcfe8;
+        padding: 0.55rem 0;
         overflow: hidden;
+        position: relative;
+      }
+      .ticker-outer::before,
+      .ticker-outer::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 48px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .ticker-outer::before {
+        left: 0;
+        background: linear-gradient(90deg, #fce7f3, transparent);
+      }
+      .ticker-outer::after {
+        right: 0;
+        background: linear-gradient(270deg, #fce7f3, transparent);
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 22s linear infinite;
+      }
+      .ticker-track:hover {
+        animation-play-state: paused;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        padding: 0 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #9d174d;
+      }
+      .ticker-item .ico {
+        font-size: 1rem;
+      }
+      .sep {
+        color: #f9a8d4;
+        font-size: 1rem;
+        padding: 0 4px;
       }
     </style>
   </head>
 
-  <body class="h-screen w-screen flex items-center justify-center font-sans">
-    <div class="text-center px-6 opacity-0" id="card">
+  <body class="min-h-screen flex flex-col items-center font-sans">
+    <div
+      class="floating-sticker"
+      style="top: 5%; left: 3%; animation-delay: 0s"
+    >
+      🌸
+    </div>
+    <div
+      class="floating-sticker"
+      style="top: 12%; right: 4%; animation-delay: 1s"
+    >
+      ✨
+    </div>
+    <div
+      class="floating-sticker"
+      style="top: 38%; left: 2%; animation-delay: 2s"
+    >
+      🦋
+    </div>
+    <div
+      class="floating-sticker"
+      style="top: 55%; right: 3%; animation-delay: 0.5s"
+    >
+      🌷
+    </div>
+    <div
+      class="floating-sticker"
+      style="top: 75%; left: 5%; animation-delay: 1.5s"
+    >
+      🐱
+    </div>
+    <div
+      class="floating-sticker"
+      style="top: 80%; right: 5%; animation-delay: 2.5s"
+    >
+      💫
+    </div>
+
+    <div class="text-center px-6 opacity-0 w-full max-w-lg py-10" id="card">
       <!-- Glow -->
       <div
-        class="w-48 h-48 mx-auto rounded-full bg-pink-300 blur-3xl opacity-40"
+        class="w-44 h-44 mx-auto rounded-full bg-pink-300 blur-3xl opacity-40"
       ></div>
 
       <!-- Image -->
@@ -36,6 +155,7 @@
       <!-- Name -->
       <h1
         class="text-4xl md:text-5xl font-extrabold text-pink-600 mt-6 drop-shadow-sm"
+        id="name"
       >
         Hello, I'm Upasna 💕
       </h1>
@@ -43,54 +163,144 @@
       <!-- Message -->
       <p
         class="text-pink-700 mt-4 max-w-md mx-auto leading-relaxed text-base font-medium"
+        id="sub"
       >
         Just a small soul living in a big world 🌸 I believe in kindness,
         softness, and spreading love everywhere I go.
       </p>
 
-      <!-- Kindness -->
-      <div class="mt-10">
-        <p class="text-pink-600 font-bold text-xl">Be kind to animals 🐾</p>
-        <p class="text-pink-500 text-sm mt-2">
-          They feel love, care, and emotions just like us.
-        </p>
+      <!-- INFINITE MARQUEE TICKER -->
+      <div class="ticker-outer mt-8 w-full" id="ticker">
+        <div class="ticker-track" id="track"></div>
       </div>
 
-      <!-- Dots -->
-      <div class="mt-10 flex justify-center gap-2">
-        <div class="w-2.5 h-2.5 bg-pink-500 rounded-full"></div>
-        <div class="w-2.5 h-2.5 bg-pink-400 rounded-full"></div>
+      <!-- Be Kind to Animals Card -->
+      <div
+        id="animal-card"
+        class="mt-8 w-full rounded-3xl overflow-hidden shadow-lg"
+        style="
+          background: linear-gradient(135deg, #fce7f3, #fdf4ff);
+          border: 1.5px solid #fbcfe8;
+        "
+      >
+        <div class="px-6 py-6 flex flex-col items-center gap-3">
+          <div
+            class="flex gap-2 text-4xl"
+            style="filter: drop-shadow(0 2px 6px #f9a8d488)"
+          >
+            🐶🐱🐰🐦🐾
+          </div>
+          <h2 class="text-2xl font-extrabold text-pink-600 mt-1">
+            Be Kind to Animals 🐾
+          </h2>
+          <p
+            class="text-pink-700 text-sm leading-relaxed text-center max-w-xs font-medium"
+          >
+            They can't speak our language, but they feel every bit of love,
+            pain, and warmth we give them. Be their voice. Be their safe place.
+            💗
+          </p>
+          <div class="mt-2 flex gap-3 flex-wrap justify-center">
+            <span
+              class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full border border-pink-200"
+              >🌿 Feed strays</span
+            >
+            <span
+              class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full border border-pink-200"
+              >💧 Leave water out</span
+            >
+            <span
+              class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full border border-pink-200"
+              >🏠 Adopt don't shop</span
+            >
+            <span
+              class="bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full border border-pink-200"
+              >🤍 Speak up for them</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Cute illustration sticker cards -->
+      <div class="mt-8 flex justify-center gap-4 flex-wrap" id="illus">
+        <div
+          class="illus-card bg-white border border-pink-200 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 text-xs font-semibold text-pink-800"
+        >
+          <span class="text-3xl">🌸</span><span>Bloom</span>
+        </div>
+        <div
+          class="illus-card bg-white border border-pink-200 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 text-xs font-semibold text-pink-800"
+        >
+          <span class="text-3xl">🐣</span><span>New beginnings</span>
+        </div>
+        <div
+          class="illus-card bg-white border border-pink-200 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 text-xs font-semibold text-pink-800"
+        >
+          <span class="text-3xl">🍵</span><span>Soft vibes</span>
+        </div>
+        <div
+          class="illus-card bg-white border border-pink-200 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 text-xs font-semibold text-pink-800"
+        >
+          <span class="text-3xl">🌈</span><span>Stay colorful</span>
+        </div>
+        <div
+          class="illus-card bg-white border border-pink-200 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 text-xs font-semibold text-pink-800"
+        >
+          <span class="text-3xl">🐾</span><span>Be kind</span>
+        </div>
+      </div>
+
+      <!-- Footer dots -->
+      <div class="mt-8 mb-6 flex justify-center gap-2">
         <div class="w-2.5 h-2.5 bg-pink-300 rounded-full"></div>
+        <div class="w-2.5 h-2.5 bg-pink-400 rounded-full"></div>
+        <div class="w-2.5 h-2.5 bg-pink-500 rounded-full"></div>
       </div>
     </div>
 
     <script>
+      const items = [
+        { ico: "🐾", text: "Be kind to animals" },
+        { ico: "🌸", text: "Spread kindness daily" },
+        { ico: "💖", text: "Choose softness always" },
+        { ico: "🌿", text: "Love the earth" },
+        { ico: "🦋", text: "Keep growing, always" },
+        { ico: "🌈", text: "Stay colorful inside" },
+        { ico: "🐱", text: "Hug every kitty" },
+        { ico: "✨", text: "You are enough" },
+        { ico: "🌼", text: "Bloom wherever you are" },
+        { ico: "🍓", text: "Life is sweet" },
+      ];
+
+      const track = document.getElementById("track");
+      [...items, ...items].forEach((item) => {
+        const el = document.createElement("span");
+        el.className = "ticker-item";
+        el.innerHTML = `<span class="ico">${item.ico}</span>${item.text}<span class="sep">✦</span>`;
+        track.appendChild(el);
+      });
+
       gsap.to("#card", {
         opacity: 1,
         y: -10,
         duration: 1.2,
         ease: "power3.out",
       });
-
-      gsap.from("h1", {
+      gsap.from("#name", { y: 30, opacity: 0, delay: 0.3, duration: 1 });
+      gsap.from("#sub", { y: 20, opacity: 0, delay: 0.5, duration: 1 });
+      gsap.from("#ticker", {
         y: 30,
         opacity: 0,
-        delay: 0.3,
+        delay: 0.7,
         duration: 1,
+        ease: "back.out(1.4)",
       });
-
-      gsap.from("p", {
-        y: 20,
+      gsap.from("#illus .illus-card", {
+        scale: 0,
         opacity: 0,
-        delay: 0.5,
-        duration: 1,
-        stagger: 0.2,
-      });
-
-      gsap.from(".w-28", {
-        scale: 0.5,
-        opacity: 0,
-        duration: 1,
+        delay: 0.9,
+        duration: 0.6,
+        stagger: 0.1,
         ease: "back.out(1.7)",
       });
     </script>
